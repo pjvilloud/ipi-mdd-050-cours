@@ -1,0 +1,666 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>IPI - Cours de SOA - module 050</title>
+    
+    <meta name="description" content="" />
+    <meta name="author" content="Pierre-Julien VILLOUD" />
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/idea.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="my-navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="img/ipi.jpg" width="30" height="30" alt=""> Cours SOA 050
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav nav-pills mr-auto">
+      
+    </ul>
+    <span class="navbar-text">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-primary" href="https://github.com/pjvilloud/ipi-mdd-050-web" target="_blank"><i class="fa fa-icon fa-gamepad"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="mailto:pjvilloud@protonmail.com"><i class="fa fa-icon fa-envelope"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="https://github.com/pjvilloud" target="_blank"><i class="fa fa-icon fa-github"></i></a>
+            &nbsp;
+            <a class="btn btn-primary" href="https://linkedin.com/pjvilloud" target="_blank"><i class="fa fa-icon fa-linkedin"></i></a>&nbsp;
+            <a class="btn btn-primary" href="#" id="numSlide">1</a>
+        </div>
+    </span>
+  </div>
+</nav>
+<div class="progress">
+  <div id="progress" class="progress-bar" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="container-fluid" id="impress">
+
+    <div id="accueil" class="step slide" data-rel-x="0" data-y=0>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container text-center">
+            <h1 class="display-3">Bienvenue !</h1>
+            <p class="lead">
+                <h2>Pierre-Julien VILLOUD</h2>
+                <div class="big-top-margin">
+                    <img src="img/pjvilloud.jpg" class="img-bienvenue rounded mx-auto d-block" alt="Pierre-Julien VILLOUD">
+                </div>
+                <div class="big-top-margin">
+                    <h3><i class="fa fa-icon fa-envelope-square"></i>&nbsp;<a href="mailto:pjvilloud@protonmail.com">pjvilloud@protonmail.com</a></h3>
+                    <h3><i class="fa fa-icon fa-github-square"></i>&nbsp;<a href="https://github.com/pjvilloud" target="_blank">https://github.com/pjvilloud</a></h3>
+                    <h3><i class="fa fa-icon fa-linkedin-square"></i>&nbsp;<a href="https://linkedin.com/pjvilloud" target="_blank">https://linkedin.com/pjvilloud</a></h3>
+                    <h3><i class="fa fa-icon fa-globe"></i>&nbsp;<a href="http://pjvilloud.github.io" target="_blank">http://pjvilloud.github.io</a></h3>
+                </div>
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <div id="introduction" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Introduction</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il arrive régulièrement qu'un logiciel doive s'interfacer avec d'autres composants logiciels (ou que d'autres composants logiciels s'interfacent avec notre logiciel). Cela pose les problématiques suivantes :
+            </div>
+          </div>
+          <div class="container">
+            <ul class="list-group">
+              <li class="list-group-item">Comment gérer les différences de langage de programmation ou de versions entre les composants ?</li>
+              <li class="list-group-item">Comment faire communiquer les composants entre eux (moyen et format) qu'ils soient distants ou non ?</li>
+            </ul>
+          </div>
+          <div class="container-fluid">
+            <div class="little-top-margin alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Pour adresser ces problématiques, le concept d'<strong>Architecture Orientée Service (SOA)</strong> a été théorisé et est aujourd'hui largement utilisé.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="soa" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Architecture SOA</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une architecture <strong>SOA</strong> repose sur le principe du <strong>Fournisseur/Consommateur</strong>.
+            </div>
+          </div>
+          <div class="container small-font text-left big-top-margin">
+            <p>Une <strong>Application</strong> est composée de <strong>Services (ou composants)</strong>. Les <strong>Fournisseurs</strong> de service exposent des <strong>Contrats</strong> qui contiennent des <strong>Schémas</strong> qui décrivent la manière d'échanger des <strong>Messages</strong> avec les <strong>Consommateurs</strong> du service.</p>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font big-top-margin" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Un service est donc une <em>boite noire</em> pour les autres services qui ont juste besoin de savoir comment <strong>échanger</strong>. Ils n'ont pas besoin de savoir comment les autres services ont été développés.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="soa-concepts" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Les concepts de la SOA</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La SOA n'a pas été standardisée mais on peut tout de même considérer les principes suivants pour pouvoir qualifier une architecture d'<em>orientée service</em>.
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <ul class="list-group">
+              <li class="list-group-item">Le contrat de service est décrit dans un ou plusieurs <em>documents</em> publiés dans un <em>annuaire</em>, qui définit le standard de communication à utiliser, ainsi que le format des échanges.</li>
+              <li class="list-group-item">Deux services qui veulent communiquer ont uniquement besoin de savoir qu'ils existent. Le contrat doit être exposé dans un format interprétable par les fournisseurs.</li>
+              <li class="list-group-item">Deux services peuvent communiquer même s'ils ne sont pas sur le même réseau (sauf contraintes de sécurité)</li>
+              <li class="list-group-item">Un service doit être pérenne et peut être consommé à n'importe quel moment. Les changements de contrats doivent être gérés.</li>
+              <li class="list-group-item">Chaque service est indépendant et encapsulé. Sa logique interne est dissimulée aux autres services.</li>
+              <li class="list-group-item">Les services sont <strong>stateless</strong> <em>"sans état"</em>, ce qui signifie que chaque appel au service est indépendant et le service n'a pas à connaître les précédents appels. </li>
+            </ul>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Certaines implémentations SOA omettent la notion d'annuaire, pas forcément utile dans toutes les applications.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="soa-ws" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Les services Web</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les services web sont une implémentation possible de l'architecture SOA. Il en existe principalement deux sortes : 
+            </div>
+          </div>
+          <div class="container-fluid little-top-margin small-font text-left row">
+            <div class="col-lg-6">
+              <h3 class="display-4 text-center">Les services web SOAP</h3>
+              <ul class="list-group small-font">
+                <li class="list-group-item">Transport <span class="badge float-right badge-success">HTTP</span></li>
+                <li class="list-group-item">Communication : <span class="badge float-right badge-success">XML</span></li>
+                <li class="list-group-item">Description : <span class="badge float-right badge-primary">XSD</span> <span class="badge float-right badge-success">WSDL</span></li>
+                <li class="list-group-item">Découverte : <span class="badge float-right badge-success">UDDI</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="display-4 text-center">Les services web REST</h3>
+              <ul class="list-group small-font">
+                <li class="list-group-item">Transport <span class="badge float-right badge-success">HTTP</span></li>
+                <li class="list-group-item">Communication : <span class="badge float-right badge-primary">...</span> <span class="badge float-right badge-success">JSON</span> <span class="badge float-right badge-primary">XML</span> </li>
+                <li class="list-group-item">Description : <span class="badge float-right badge-primary">...</span> <span class="badge float-right badge-primary">Swagger</span> <span class="badge float-right badge-primary">Spring REST Docs</span> </li>
+                <li class="list-group-item">Découverte : <span class="badge float-right badge-warning">WADL</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="container-fluid big-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Nous verrons uniquement les services web REST car ils sont simples et plus utilisés de nos jours que les services web SOAP.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="soap" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Services web SOAP</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Voici comment fonctionne un service web SOAP
+            </div>
+          </div>
+          <div class="container-fluid small-font">
+            <img src="img/soap.png" alt="" height="750">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Services web REST</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Voici comment fonctionne un service web REST
+            </div>
+          </div>
+          <div class="container small-font">
+            <img src="img/rest.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-principes" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Principes et règles</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsqu'on parle de services web REST (Representational state transfer), il est nécessaire de connaître les règles et principes suivants :
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 small-font">
+              
+              <p>Règles de nommage : </p>
+              <ul class="list-group">
+                <li class="list-group-item">Les URL contiennent le nom de la ressource au pluriel. Ex : <code>/vehicules</code></li>
+                <li class="list-group-item">Lorsqu'on travaille sur une ressource en particulier, on ajoute l'identifiant de la ressource dans l'URL. Ex : <code>/vehicules/55</code></li>
+                <li class="list-group-item">Lorsqu'on travaille sur une sous-ressource, on concatène la nouvelle dans l'URL. Ex : <code>/vehicules/55/entretiens</code></li>
+              </ul>
+            </div>
+            <div class="col-lg-6 smaller-font">
+              <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Verbe HTTP</th>
+                <th>CRUD</th>
+                <th>Collection entière (ex /vehicules)</th>
+                <th>Élément spécifique (ex /vehicules/{id})</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>POST</td>
+                <td>Create</td>
+                <td>201 (Created).</td>
+                <td>404 (Not Found), 409 (Conflict) si l'élément existe déjà.</td>
+              </tr>
+              <tr>
+                <td>GET</td>
+                <td>Read</td>
+                <td>200 (OK), liste des clients. Pagination et ordre à gérer pour les grosses listes.</td>
+                <td>200 (OK), client. 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+              </tr>
+              <tr>
+                <td>PUT</td>
+                <td>Update/Replace</td>
+                <td>405 (Method Not Allowed)</td>
+                <td>200 (OK) or 204 (No Content). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+              </tr>
+              <tr>
+                <td>PATCH</td>
+                <td>Update/Modify</td>
+                <td>405 (Method Not Allowed).</td>
+                <td>200 (OK) or 204 (No Content).  404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+              </tr>
+              <tr>
+                <td>DELETE</td>
+                <td>Delete</td>
+                <td>405 (Method Not Allowed).</td>
+                <td>200 (OK). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+              </tr>
+            </tbody>
+          </table>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Nous allons construire un service web REST permettant de consulter sous forme de JSON, des données issues d'une base de données MySQL
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Web Service REST avec Spring</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Le framework Spring propose une librairie permettant la création de services Web REST de manière concise et efficace.
+            </div>
+          </div>
+          <div class="container small-font">
+            <img src="img/springrest.png" alt="">
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On peut également utiliser Spring MVC pour rendre du HTML.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring-couches" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Les couches de notre service</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsqu'on développe un projet en SOA, il est nécessaire de bien structurer son code en package. 
+            </div>
+          </div>
+          <div class="container small-font">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Model</strong> : <p><em>décrit les entités manipulées</em></p></li>
+              <li class="list-group-item"><strong>Repository</strong> : <p><em>mappe les données de la base dans les entités</em></p></li>
+              <li class="list-group-item"><strong>Service</strong> : <p><em>expose les fonctionnalités disponibles et appelle les méthodes des repository</em></p></li>
+              <li class="list-group-item"><strong>Controller</strong> : <p><em>formatte les données renvoyées par les services lors des appels des consommateurs.</em></p></li>
+            </ul>
+          </div>
+          <div class="container-fluid little-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La couche <em>Service</em> sera utilisée par nos contrôleurs webs, mais elle pourrait être utilisée par une application en mode console par exemple.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring-couches-model" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">La couche Model</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Petit rappel sur la couche modèle 
+            </div>
+          </div>
+          <div class="container text-left">
+            <pre><code class="java">@Entity
+public class Vehicule {
+  private String immatriculation;
+
+  //...
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Cette couche contient toutes les entités gérées par notre application.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring-couches-repository" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">La couche Repository</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Petit rappel sur la couche Repository
+            </div>
+          </div>
+          <div class="container-fluid text-left">
+            <pre><code class="java">@Repository
+public interface VehiculeRepository {
+    public Vehicule findByImmatriculation(String immatriculation);
+
+    //...
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Cette couche contient tous les Repository permettant de faire le lien entre les entités et la base de données.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring-couches-service" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">La couche Service</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;La couche Service est un niveau d'abstraction entre l'application en elle-même et les Repository.
+            </div>
+          </div>
+          <div class="container-fluid text-left">
+            <pre><code class="java">@Service
+public class VehiculeService {
+  @Autowired
+  private VehiculeRepository vehiculeRepository; 
+  public Vehicule findByImmatriculation(String immat) {
+    if(validationImmatriculation(immat)){
+      return vehiculeRepository.findByImmatriculation(immat);
+    } else {
+      throw new Exception("L'immatriculation est incorrecte");
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;L'intérêt de cette couche est de limiter les <em>droits</em> sur les entités. Chaque service exposera donc un ensemble limité de fonctionnalités.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rest-spring-couche-controller" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">La couche Controller</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Cette couche permet de recevoir les requêtes HTTP envoyées par les différents clients et renvoie une réponse HTTP pour chacunes d'entre elles.
+            </div>
+          </div>
+          <div class="container-fluid  text-left">
+            <pre><code class="java">@RestController
+@RequestMapping(value = "/vehicules")
+public class VehiculeController {
+  @Autowired
+  private VehiculeService vehiculeService;
+
+  @RequestMapping("/{id}")
+  public Vehicule findById(@PathVariable("id") Long id) {
+      return vehiculeService.findById(id);
+  }
+}
+</code></pre></div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsqu'on va accéder à l'adresse <em>http://localhost:8080/vehicules/2</em>, on obtiendra sous format JSON l'entité <em>Vehicule</em> d'identifiant 2 correspondante si elle existe.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Contrôleurs Spring</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une classe peut être définie en tant que Contrôleur Spring avec l'annotation <code>@RestController</code>.
+            </div>
+          </div>
+          <div class="container  text-left">
+            <pre><code class="java">@RestController
+@RequestMapping(value = "/vehicules")
+public class VehiculeController {
+
+  //...
+
+}
+</code></pre></div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Un chemin de base pour ce contrôleur peut être défini avec l'annotation <code>@RequestMapping</code>. Ce contrôleur gérera toutes les requêtes commençant par <code>/vehicules</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-mapping" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Mapping de requête</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Dans le contrôleur, il est alors possible de définir des mappings permettant d'<em>intercepter</em> les requêtes HTTP en fonction de leur chemin et de leurs paramètres avec l'annotation <code>@RequestMapping</code>.
+            </div>
+          </div>
+          <div class="container-fluid small-font text-left">
+            <pre><code class="java">@RequestMapping(
+  method = RequestMethod.POST, //Méthode HTTP : GET/POST/PATCH/PUT/DELETE
+  consumes = "application/json", //Type MIME des données passées avec la requête : JSON, XML, Texte...
+  produces = "application/json", //Type MIME des données fournies dans la réponse
+  value = "/vehicules" //Chemin du mapping (concaténé avec l'éventuel chemin présent au niveau du contrôleur)
+)
+public ...
+
+            </code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une requête peut ne pas fournir de données en entrée. Et une réponse peut ne pas fournir non plus de données en sortie.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-queryparams" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Récupération des <code>QueryParams</code></h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Les <code>QueryParams</code> sont les paramètres qui sont passés dans l'url. Par exemple <code>http://localhost:8080?page=1&size=15</code>. Il y a deux paramètres : <code>page</code> valorisé à 1 et <code>size</code> valorisé à 15. Pour les récupérer, on utilise l'annotation <code>@RequestParam</code>.
+            </div>
+          </div>
+          <div class="container big-top-margin text-left">
+          <pre><code class="java">@RequestMapping(...)
+public List&lt;Vehicule&gt; exemple(
+  @RequestParam("page") Integer page, 
+  @RequestParam("size") Integer size)
+{
+    ...
+}</code></pre>
+          </div>
+          <div class="container-fluid big-top-margin">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On utilise notamment ces paramètres pour gérer une pagination.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-urlportion" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Paramètres dans l'URL</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Une syntaxe fréquente dans une application REST consiste à intégrer des paramètres directement dans l'URL comme par exemple <code>http://localhost:8080/vehicules/1</code>
+            </div>
+          </div>
+          <div class="container text-left">
+            <pre><code class="java">@RequestMapping(value = "/{id}", ...)
+public Vehicule findById(
+  @PathVariable (value = "id") Integer id)
+{
+    ...
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Cette notation est également fréquente. Cf slide sur les conventions de nommage.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-requestbody" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Corps de la requête</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Lorsqu'on veut envoyer des données plus complexes, comme à la création d'un objet par exemple, on utilise le corps de la requête avec l'annotation <code>@RequestBody</code>, cela correspond au champ <code>data</code> de la requête.
+            </div>
+          </div>
+          <div class="container text-left">
+            <pre><code class="java">@RequestMapping(...)
+public Vehicule createVehicule (
+  @RequestBody Vehicule vehicule)
+{
+    ...
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;On envoie dans ce champ des données structuées en JSON ou en XML. Les données serialisées doivent correspondre à l'entité dans laquelle on place l'objet. Sinon, les données seront stockées dans une <code>Map</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-casparticuliers" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Cas particuliers</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il arrive qu'une fonction ne retourne pas de résultat, lors d'une suppression par exemple. Dans ce cas, il est nécessaire de spécifier un statut HTTP particulier, le 204 <code>NO_CONTENT</code> avec l'annotation <code>@ResponseStatus</code>.
+            </div>
+          </div>
+          <div class="container text-left">
+            <pre><code class="java">@RequestMapping(...)
+@ResponseStatus(value = HttpStatus.NO_CONTENT)
+public void deleteVehicule(...) {
+  ...
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Si on ne met pas cette annotation, le client pourra considérer qu'une erreur s'est produite, car il n'est pas normal de n'avoir pas de données en retour dans une réponse de code 200.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controller-errors" class="step slide">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid text-center">
+          <h1 class="display-3">Gestion des erreurs</h1>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font" role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il est important de gérer correctement les erreurs de nos services Webs. Par exemple, lorsqu'on demande une ressource qui n'existe pas, on doit renvoyer une erreur 404 <code>NOT_FOUND</code>. Pour gérer cela, on lève des exceptions dans les contrôleurs, et on utilise un gestionnaire d'exception pour gérer les bons codes HTTP.
+            </div>
+          </div>
+          <div class="container small-font text-left">
+            <pre><code class="java">//Dans un contrôleur
+throw new EntityNotFoundException("L'employé d'identifiant : " + 
+  id + " n'a pas été trouvé.");
+
+//Dans la classe GlobalExceptionHandler
+@ControllerAdvice
+public class GlobalExceptionHandler 
+  extends ResponseEntityExceptionHandler {
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  @ResponseBody
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public String handleEntityNotFoundException(
+    EntityNotFoundException entityNotFoundException) {
+      return entityNotFoundException.getMessage();
+  }
+}</code></pre>
+          </div>
+          <div class="container-fluid">
+            <div class="alert alert-primary small-font " role="alert">
+                <i class="fa fa-icon fa-info-circle"></i>&nbsp;Il est également possile de définir ces méthodes de gestion d'exceptions directement dans les contrôleurs.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="js/impress.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/highlight.min.js"></script>
+<script src="js/script.js"></script>
+
