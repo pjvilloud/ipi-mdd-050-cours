@@ -1,2 +1,2 @@
-# ipi-java-230-cours
-Cours de Java, module 230 pour l'IPI
+# ipi-mdd-050-cours
+Cours de Java SOA, module 050 pour l'IPI
