@@ -263,26 +263,26 @@
               <tr>
                 <td>GET</td>
                 <td>Read</td>
-                <td>200 (OK), liste des clients. Pagination et ordre à gérer pour les grosses listes.</td>
+                <td>200 (OK), liste des véhicules. Pagination et ordre à gérer pour les grosses listes.</td>
                 <td>200 (OK), client. 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
               </tr>
               <tr>
                 <td>PUT</td>
                 <td>Update/Replace</td>
                 <td>405 (Method Not Allowed)</td>
-                <td>200 (OK) or 204 (No Content). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+                <td>200 (OK). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
               </tr>
               <tr>
                 <td>PATCH</td>
                 <td>Update/Modify</td>
                 <td>405 (Method Not Allowed).</td>
-                <td>200 (OK) or 204 (No Content).  404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+                <td>200 (OK). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
               </tr>
               <tr>
                 <td>DELETE</td>
                 <td>Delete</td>
                 <td>405 (Method Not Allowed).</td>
-                <td>200 (OK). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
+                <td>200 (OK) or 204 (No Content). 404 (Not Found), si l'identifiant n'a pas été trouvé ou est invalide.</td>
               </tr>
             </tbody>
           </table>
@@ -630,16 +630,14 @@ public void deleteVehicule(...) {
           </div>
           <div class="container small-font text-left">
             <pre><code class="java">//Dans un contrôleur
-throw new EntityNotFoundException("L'employé d'identifiant : " + 
+throw new EntityNotFoundException("Le véhicule d'identifiant : " + 
   id + " n'a pas été trouvé.");
 
 //Dans la classe GlobalExceptionHandler
-@ControllerAdvice
-public class GlobalExceptionHandler 
-  extends ResponseEntityExceptionHandler {
+@RestControllerAdvice
+public class GlobalExceptionHandler {
 
   @ExceptionHandler(EntityNotFoundException.class)
-  @ResponseBody
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public String handleEntityNotFoundException(
     EntityNotFoundException entityNotFoundException) {
